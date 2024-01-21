@@ -31,10 +31,14 @@ const useStopWatch = () => {
 		stopWatchInterval = null;
 	};
 
-	return [formatTime(elapsedTime)];
+	return {
+		elapsedTime: formatTime(elapsedTime),
+		startStopWatch,
+		stopStopWatch,
+	};
 };
 
 export default function StopWatch() {
-	const [elapsedTime] = useStopWatch();
+	const { elapsedTime, startStopWatch, stopStopWatch } = useStopWatch();
 	return <div>{elapsedTime}</div>;
 }
