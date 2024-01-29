@@ -22,4 +22,10 @@ function App() {
 export default App;
 
 // TODO:
+// Fix logic for rest countdown -- elapsed time used for computation should be reset when resuming after a break
 // Fix color scheme from Adobe Color
+// Add transition animations
+// Add confirmation dialog for Stop session
+// Add background gradient animation on start session
+// Add beeping sounds for when rest countdown has completed
+// Add beeping sound for start timer
