@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { formatTime } from '../utils/time_formatter';
 
 function useCountdown(isPaused: boolean, elapsedTime: number) {
 	const [remainingTime, setRemainingTime] = useState<number>(0);
@@ -7,16 +6,11 @@ function useCountdown(isPaused: boolean, elapsedTime: number) {
 
 	const updateCountdown = (countdownTime: number) => {
 		const currentTime = new Date().getTime();
-		console.log('COUNTDOWN TIME:' + countdownTime);
-		console.log('REMAINING TIME:' + (currentTime - countdownTime));
-		setRemainingTime(currentTime - countdownTime);
+		setRemainingTime(countdownTime - currentTime);
 	};
 
 	const startCountdown = () => {
-		// elapsedTime = new Date().getTime() - elapsedTime / 5;
-		const countdownTime = new Date().getTime() - elapsedTime / 5;
-		console.log('COUNTDOWN TIME:' + countdownTime);
-
+		const countdownTime = new Date().getTime() + elapsedTime / 5;
 		const stopInterval = setInterval(
 			updateCountdown.bind(null, countdownTime),
 			1000
@@ -24,13 +18,18 @@ function useCountdown(isPaused: boolean, elapsedTime: number) {
 		setIntervalId(stopInterval);
 	};
 
+	const stopCountdown = () => {
+		clearInterval(intervalId);
+		setRemainingTime(0);
+	};
+
 	useEffect(() => {
 		if (intervalId && (remainingTime < 0 || !isPaused)) {
-			clearInterval(intervalId);
+			stopCountdown();
 		}
-	}, []);
+	}, [remainingTime, isPaused]);
 
-	return { startCountdown, remainingTime };
+	return { startCountdown, stopCountdown, remainingTime };
 }
 
 export { useCountdown };

@@ -55,7 +55,10 @@ export default function Timer() {
 		isPaused,
 	} = useStopWatch();
 
-	const { startCountdown, remainingTime } = useCountdown(isPaused, elapsedTime);
+	const { startCountdown, stopCountdown, remainingTime } = useCountdown(
+		isPaused,
+		elapsedTime
+	);
 	return (
 		<div className="flex flex-col items-center">
 			<span className="font-timer text-6xl py-4 text-zinc-50">
@@ -71,7 +74,10 @@ export default function Timer() {
 						pauseStopWatch();
 						startCountdown();
 					}}
-					resumeStopWatch={resumeStopWatch}
+					resumeStopWatch={() => {
+						resumeStopWatch();
+						stopCountdown();
+					}}
 				/>
 			</div>
 		</div>
