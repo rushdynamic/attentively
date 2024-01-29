@@ -10,11 +10,10 @@ const formatTime = (elapsedTime: number) => {
 	const hours = Math.floor(elapsedTime / 1000 / 60 / 60);
 
 	return (
-		addZeroPadding(hours) +
-		':' +
-		addZeroPadding(minutes) +
-		':' +
-		addZeroPadding(seconds)
+		(hours > 0 ? hours + 'h ' : '') +
+		(minutes > 0 ? minutes + 'm ' : '') +
+		seconds +
+		's'
 	);
 };
 
