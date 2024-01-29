@@ -57,7 +57,9 @@ export default function StopWatch() {
 		useStopWatch();
 	return (
 		<div className="flex flex-col items-center">
-			<span>{formatTime(elapsedTime)}</span>
+			<span className="font-timer text-6xl font-semibold py-4">
+				{formatTime(elapsedTime)}
+			</span>
 			<div>
 				{elapsedTime == 0 || paused ? (
 					<button
