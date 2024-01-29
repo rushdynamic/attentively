@@ -1,5 +1,5 @@
 import { ThemeProvider } from '../@/components/theme-provider';
-import StopWatch from './components/StopWatch';
+import Timer from './components/Timer';
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 				</div>
 				<div className="h-full flex justify-center items-center">
 					<div className="flex flex-col items-center">
-						<StopWatch />
+						<Timer />
 					</div>
 				</div>
 			</div>
