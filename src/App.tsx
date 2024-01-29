@@ -1,16 +1,21 @@
+import { ThemeProvider } from '../@/components/theme-provider';
 import StopWatch from './components/StopWatch';
 import './App.css';
 
 function App() {
 	return (
-		<div className="h-screen w-screen bg-gray-600 flex items-center justify-center">
-			<div className="flex flex-col items-center">
-				<span className="font-semibold text-xl text-gray-400">Flowmodoro</span>
-				<div>
-					<StopWatch />
+		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<div className="h-screen w-screen bg-zinc-950 flex items-center justify-center">
+				<div className="flex flex-col items-center">
+					<span className="font-semibold text-xl text-gray-400">
+						Flowmodoro
+					</span>
+					<div>
+						<StopWatch />
+					</div>
 				</div>
 			</div>
-		</div>
+		</ThemeProvider>
 	);
 }
 

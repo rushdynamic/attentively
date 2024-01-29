@@ -58,7 +58,7 @@ export default function StopWatch() {
 		useStopWatch();
 	return (
 		<div className="flex flex-col items-center">
-			<span className="font-timer text-6xl font-semibold py-4">
+			<span className="font-timer text-6xl py-4 text-zinc-50">
 				{formatTime(elapsedTime)}
 			</span>
 			<div>
@@ -68,7 +68,7 @@ export default function StopWatch() {
 					</Button>
 				) : (
 					<div className="flex items-center gap-2">
-						<Button variant="default" onClick={pauseStopWatch}>
+						<Button variant="outline" onClick={pauseStopWatch}>
 							Take a break
 						</Button>
 						<Button variant="destructive" onClick={stopStopWatch}>
