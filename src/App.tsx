@@ -22,5 +22,4 @@ function App() {
 export default App;
 
 // TODO:
-// Add buttons for - Start Session (start timer), Take Break -- compute countdown with 1/5 of elapsed time, Stop Session -- reset everything
 // Fix color scheme from Adobe Color

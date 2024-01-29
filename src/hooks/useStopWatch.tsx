@@ -6,14 +6,16 @@ const useStopWatch = () => {
 	const [intervalId, setIntervalId] = useState<number | any>(null);
 
 	const updateStopWatch = (startTime: any) => {
-		const currentTime = new Date().getTime() + 30 * 1000;
+		const currentTime = new Date().getTime();
 		setElapsedTime(currentTime - startTime);
 	};
 
 	const startStopWatch = () => {
+		const startTime = new Date().getTime();
+		setElapsedTime(startTime + 1000 - startTime);
 		if (!intervalId) {
 			const stopInterval = setInterval(
-				updateStopWatch.bind(null, new Date().getTime()),
+				updateStopWatch.bind(null, startTime),
 				1000
 			);
 			setIntervalId(stopInterval);
