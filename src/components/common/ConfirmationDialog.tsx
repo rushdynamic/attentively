@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Button } from '../../@/components/ui/button';
+import { Button } from '../../../@/components/ui/button';
 import {
 	Dialog,
 	DialogContent,
@@ -8,7 +8,7 @@ import {
 	DialogDescription,
 	DialogTrigger,
 	DialogClose,
-} from '../../@/components/ui/dialog';
+} from '../../../@/components/ui/dialog';
 
 type ConfirmationDialogProps = {
 	children: ReactNode;

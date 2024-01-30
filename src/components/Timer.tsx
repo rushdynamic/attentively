@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useStopWatch } from '../hooks/useStopWatch';
 import { useCountdown } from '../hooks/useCountdown';
 import { formatTime } from '../utils/time_formatter';
-import ConfirmationDialog from './ConfirmationDialog';
-import Loader from './Loader';
+import ConfirmationDialog from './common/ConfirmationDialog';
+import Loader from './common/Loader';
 
 type stopWatchButtonsType = {
 	isPaused: boolean;
