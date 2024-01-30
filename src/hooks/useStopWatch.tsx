@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useToast } from '../../@/components/ui/use-toast';
 import useSound from 'use-sound';
 import { formatTime } from '../utils/time_formatter';
+import useLocalStorage from './useLocalStorage';
 
 const useStopWatch = () => {
 	/*
@@ -19,6 +20,8 @@ const useStopWatch = () => {
 	const { toast } = useToast();
 	const [playStartSound] = useSound('sound/start-timer.mp3');
 	const [playStopSound] = useSound('sound/stop-timer.mp3');
+
+	const { getLs, upsertLs } = useLocalStorage('stopWatch');
 
 	const updateStopWatch = (startTime: any) => {
 		const currentTime = new Date().getTime(); // + 25 * 60 * 1000;
@@ -47,15 +50,21 @@ const useStopWatch = () => {
 		clearInterval(intervalId);
 		setIntervalId(null);
 		playStopSound();
-		const totalSessionTime =
+		const currentSessionTotalTime =
 			0 == sessionElapsedTime ? elapsedTime : sessionElapsedTime;
+
+		// write session total to local-storage
+		upsertLs(null, currentSessionTotalTime);
+
+		// show toast with today's total focused time
+		const todaySessionTotalTime = Number(getLs());
 		toast({
-			title: 'Completed session',
+			title: 'Session complete',
 			description:
-				'You were focused for a total of ' + formatTime(totalSessionTime),
+				'You were focused today for a total of ' +
+				formatTime(todaySessionTotalTime),
 		});
 
-		// Store stats here
 		setElapsedTime(0);
 		setSessionElapsedTime(0);
 		setCompletedSessionTime(0);

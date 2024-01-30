@@ -33,7 +33,6 @@ export default App;
 
 // TODO:
 // Make web-app responsive
-// On stopping session, store total session duration in local storage for each day
 // Add 'Stats' section
 // Fix color scheme from Adobe Color
 // Add background gradient animation on start session
