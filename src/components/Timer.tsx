@@ -2,6 +2,7 @@ import { Button } from '../../@/components/ui/button';
 import { useStopWatch } from '../hooks/useStopWatch';
 import { useCountdown } from '../hooks/useCountdown';
 import { formatTime } from '../utils/time_formatter';
+import ConfirmationDialog from './ConfirmationDialog';
 import Loader from './Loader';
 
 type stopWatchButtonsType = {
@@ -39,9 +40,14 @@ const StopWatchButtons = ({
 				<Button variant="outline" onClick={pauseStopWatch}>
 					Take a break
 				</Button>
-				<Button variant="destructive" onClick={stopStopWatch}>
-					Stop session
-				</Button>
+				<ConfirmationDialog
+					dialogTitle="Are you sure?"
+					dialogDescription="Your total session time will be reset once you end this session."
+					dialogSubText="If you're not logged in, your progress will not be tracked."
+					onConfirm={stopStopWatch}
+				>
+					<Button variant="destructive">Stop session</Button>
+				</ConfirmationDialog>
 			</div>
 		);
 };
