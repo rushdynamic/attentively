@@ -70,8 +70,10 @@ export default function Timer() {
 		isPaused,
 		isStopWatchLoading,
 	} = useStopWatch();
-	const { startCountdown, stopCountdown, remainingTime, isCountdownLoading } =
-		useCountdown(isPaused, elapsedTime);
+	const { startCountdown, remainingTime, isCountdownLoading } = useCountdown(
+		isPaused,
+		elapsedTime
+	);
 	return (
 		<div className="flex flex-col items-center">
 			{isStopWatchLoading || isCountdownLoading ? (

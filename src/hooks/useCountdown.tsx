@@ -34,7 +34,6 @@ function useCountdown(isPaused: boolean, elapsedTime: number) {
 	useEffect(() => {
 		if (intervalId && (remainingTime < 0 || !isPaused)) {
 			stopCountdown();
-			console.log('HERE');
 		}
 	}, [remainingTime, isPaused]);
 
