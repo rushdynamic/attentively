@@ -49,6 +49,7 @@ const StopWatchButtons = ({
 export default function Timer() {
 	const {
 		elapsedTime,
+		sessionElapsedTime,
 		startStopWatch,
 		stopStopWatch,
 		pauseStopWatch,
@@ -56,7 +57,6 @@ export default function Timer() {
 		isPaused,
 		isStopWatchLoading,
 	} = useStopWatch();
-
 	const { startCountdown, stopCountdown, remainingTime, isCountdownLoading } =
 		useCountdown(isPaused, elapsedTime);
 	return (
@@ -65,9 +65,16 @@ export default function Timer() {
 				<Loader />
 			) : (
 				<>
-					<span className="font-timer text-6xl py-4 text-zinc-50">
+					<span className="font-timer text-6xl py-4 text-zinc-50 cursor-default select-none">
 						{isPaused ? formatTime(remainingTime) : formatTime(elapsedTime)}
 					</span>
+					{sessionElapsedTime != 0 ? (
+						<span className="pb-2 text-zinc-600 hover:text-zinc-300 transition-colors cursor-default">
+							Total: {formatTime(sessionElapsedTime)}
+						</span>
+					) : (
+						<></>
+					)}
 					<div>
 						<StopWatchButtons
 							isPaused={isPaused}
