@@ -76,6 +76,9 @@ module.exports = {
 		fontFamily: {
 			timer: ['Space Mono', 'monospace'],
 		},
+		backgroundImage: {
+			'noise-pattern': "url('/img/bg-noise.svg')",
+		},
 	},
 	plugins: [require('tailwindcss-animate')],
 };
