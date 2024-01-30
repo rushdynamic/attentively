@@ -1,6 +1,6 @@
 import { ThemeProvider } from '../@/components/theme-provider';
 import { Toaster } from '../@/components/ui/toaster';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import Timer from './components/Timer';
 import './App.css';
 
@@ -24,6 +24,7 @@ export default App;
 
 // TODO:
 // Make web-app responsive
+// Add routing
 // Add 'Stats' section
 // Fix color scheme from Adobe Color
 // Add background gradient animation on start session

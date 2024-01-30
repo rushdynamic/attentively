@@ -43,7 +43,12 @@ const StopWatchButtons = ({
 			);
 	} else
 		return (
-			<div className="flex items-center gap-2">
+			<motion.div
+				className="flex items-center gap-2"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.8 }}
+			>
 				<Button variant="outline" onClick={pauseStopWatch}>
 					Take a break
 				</Button>
@@ -55,7 +60,7 @@ const StopWatchButtons = ({
 				>
 					<Button variant="destructive">Stop session</Button>
 				</ConfirmationDialog>
-			</div>
+			</motion.div>
 		);
 };
 
