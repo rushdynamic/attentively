@@ -4,15 +4,17 @@ const useStopWatch = () => {
 	const [elapsedTime, setElapsedTime] = useState<number>(0);
 	const [isPaused, setIsPaused] = useState<boolean>(false);
 	const [intervalId, setIntervalId] = useState<number | any>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const updateStopWatch = (startTime: any) => {
 		const currentTime = new Date().getTime();
 		setElapsedTime(currentTime - startTime);
+		setIsLoading(false);
 	};
 
 	const startStopWatch = () => {
 		const startTime = new Date().getTime();
-		setElapsedTime(startTime + 1000 - startTime);
+		setIsLoading(true);
 		if (!intervalId) {
 			const stopInterval = setInterval(
 				updateStopWatch.bind(null, startTime),
@@ -28,6 +30,7 @@ const useStopWatch = () => {
 
 		// Store stats here
 		setElapsedTime(0);
+		setIsLoading(false);
 	};
 
 	const pauseStopWatch = () => {
@@ -51,6 +54,7 @@ const useStopWatch = () => {
 		pauseStopWatch,
 		resumeStopWatch,
 		isPaused,
+		isStopWatchLoading: isLoading,
 	};
 };
 

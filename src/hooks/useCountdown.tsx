@@ -3,13 +3,16 @@ import { useState, useEffect } from 'react';
 function useCountdown(isPaused: boolean, elapsedTime: number) {
 	const [remainingTime, setRemainingTime] = useState<number>(0);
 	const [intervalId, setIntervalId] = useState<number | any>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const updateCountdown = (countdownTime: number) => {
 		const currentTime = new Date().getTime();
 		setRemainingTime(countdownTime - currentTime);
+		setIsLoading(false);
 	};
 
 	const startCountdown = () => {
+		setIsLoading(true);
 		const countdownTime = new Date().getTime() + elapsedTime / 5;
 		const stopInterval = setInterval(
 			updateCountdown.bind(null, countdownTime),
@@ -21,6 +24,7 @@ function useCountdown(isPaused: boolean, elapsedTime: number) {
 	const stopCountdown = () => {
 		clearInterval(intervalId);
 		setRemainingTime(0);
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -29,7 +33,12 @@ function useCountdown(isPaused: boolean, elapsedTime: number) {
 		}
 	}, [remainingTime, isPaused]);
 
-	return { startCountdown, stopCountdown, remainingTime };
+	return {
+		startCountdown,
+		stopCountdown,
+		remainingTime,
+		isCountdownLoading: isLoading,
+	};
 }
 
 export { useCountdown };

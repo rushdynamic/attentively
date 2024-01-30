@@ -2,6 +2,7 @@ import { Button } from '../../@/components/ui/button';
 import { useStopWatch } from '../hooks/useStopWatch';
 import { useCountdown } from '../hooks/useCountdown';
 import { formatTime } from '../utils/time_formatter';
+import Loader from './Loader';
 
 type stopWatchButtonsType = {
 	isPaused: boolean;
@@ -53,33 +54,38 @@ export default function Timer() {
 		pauseStopWatch,
 		resumeStopWatch,
 		isPaused,
+		isStopWatchLoading,
 	} = useStopWatch();
 
-	const { startCountdown, stopCountdown, remainingTime } = useCountdown(
-		isPaused,
-		elapsedTime
-	);
+	const { startCountdown, stopCountdown, remainingTime, isCountdownLoading } =
+		useCountdown(isPaused, elapsedTime);
 	return (
 		<div className="flex flex-col items-center">
-			<span className="font-timer text-6xl py-4 text-zinc-50">
-				{isPaused ? formatTime(remainingTime) : formatTime(elapsedTime)}
-			</span>
-			<div>
-				<StopWatchButtons
-					isPaused={isPaused}
-					elapsedTime={elapsedTime}
-					startStopWatch={startStopWatch}
-					stopStopWatch={stopStopWatch}
-					pauseStopWatch={() => {
-						pauseStopWatch();
-						startCountdown();
-					}}
-					resumeStopWatch={() => {
-						resumeStopWatch();
-						stopCountdown();
-					}}
-				/>
-			</div>
+			{isStopWatchLoading || isCountdownLoading ? (
+				<Loader />
+			) : (
+				<>
+					<span className="font-timer text-6xl py-4 text-zinc-50">
+						{isPaused ? formatTime(remainingTime) : formatTime(elapsedTime)}
+					</span>
+					<div>
+						<StopWatchButtons
+							isPaused={isPaused}
+							elapsedTime={elapsedTime}
+							startStopWatch={startStopWatch}
+							stopStopWatch={stopStopWatch}
+							pauseStopWatch={() => {
+								pauseStopWatch();
+								startCountdown();
+							}}
+							resumeStopWatch={() => {
+								resumeStopWatch();
+								stopCountdown();
+							}}
+						/>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
