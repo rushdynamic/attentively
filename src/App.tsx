@@ -32,5 +32,3 @@ export default App;
 // TODO:
 // Fix color scheme from Adobe Color
 // Add background gradient animation on start session
-// Add beeping sounds for when rest countdown has completed
-// Add beeping sound for start timer

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useSound from 'use-sound';
 
 const useStopWatch = () => {
 	/*
@@ -12,6 +13,8 @@ const useStopWatch = () => {
 	const [isPaused, setIsPaused] = useState<boolean>(false);
 	const [intervalId, setIntervalId] = useState<number | any>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [playStartSound] = useSound('sound/start-timer.mp3');
+	const [playStopSound] = useSound('sound/stop-timer.mp3');
 
 	const updateStopWatch = (startTime: any) => {
 		const currentTime = new Date().getTime(); // + 25 * 60 * 1000;
@@ -33,11 +36,13 @@ const useStopWatch = () => {
 			);
 			setIntervalId(stopInterval);
 		}
+		playStartSound();
 	};
 
 	const stopStopWatch = () => {
 		clearInterval(intervalId);
 		setIntervalId(null);
+		playStopSound();
 
 		// Store stats here
 		setElapsedTime(0);
@@ -64,6 +69,7 @@ const useStopWatch = () => {
 			1000
 		);
 		setIntervalId(stopInterval);
+		playStartSound();
 	};
 
 	return {
