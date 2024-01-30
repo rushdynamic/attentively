@@ -1,4 +1,5 @@
 import { Button } from '../../@/components/ui/button';
+import { motion } from 'framer-motion';
 import { useStopWatch } from '../hooks/useStopWatch';
 import { useCountdown } from '../hooks/useCountdown';
 import { formatTime } from '../utils/time_formatter';
@@ -30,9 +31,15 @@ const StopWatchButtons = ({
 			);
 		else
 			return (
-				<Button variant="default" onClick={startStopWatch}>
-					Start session
-				</Button>
+				<motion.div
+					className="-my-[50px]"
+					animate={{ y: 50 }}
+					transition={{ type: 'spring', stiffness: 100 }}
+				>
+					<Button variant="default" onClick={startStopWatch}>
+						Start session
+					</Button>
+				</motion.div>
 			);
 	} else
 		return (

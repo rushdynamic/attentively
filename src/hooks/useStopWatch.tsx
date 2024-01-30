@@ -58,6 +58,7 @@ const useStopWatch = () => {
 
 	const resumeStopWatch = () => {
 		setIsPaused(false);
+		setIsLoading(true);
 		const stopInterval = setInterval(
 			updateStopWatch.bind(null, new Date().getTime() - elapsedTime),
 			1000
