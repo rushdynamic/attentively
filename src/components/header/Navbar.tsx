@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 const NavbarIcon = ({ children }: { children: ReactNode }) => {
 	return (
@@ -11,12 +12,16 @@ const NavbarIcon = ({ children }: { children: ReactNode }) => {
 export default function Navbar() {
 	return (
 		<div className="flex items-center gap-2">
-			<NavbarIcon>
-				<img src="/img/icons/stats.svg" alt="Stats" />
-			</NavbarIcon>
-			<NavbarIcon>
-				<img src="/img/icons/about.svg" alt="About" />
-			</NavbarIcon>
+			<Link to="/stats">
+				<NavbarIcon>
+					<img src="/img/icons/stats.svg" alt="Stats" />
+				</NavbarIcon>
+			</Link>
+			<Link to="/about">
+				<NavbarIcon>
+					<img src="/img/icons/about.svg" alt="About" />
+				</NavbarIcon>
+			</Link>
 		</div>
 	);
 }
