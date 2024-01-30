@@ -1,4 +1,5 @@
 import { ThemeProvider } from '../@/components/theme-provider';
+import { Toaster } from '../@/components/ui/toaster';
 import { motion } from 'framer-motion';
 import Timer from './components/Timer';
 import './App.css';
@@ -6,6 +7,7 @@ import './App.css';
 function App() {
 	return (
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<Toaster />
 			<div className="h-screen w-screen bg-zinc-950 bg-noise-pattern">
 				<motion.div
 					className="p-3"
@@ -30,5 +32,8 @@ function App() {
 export default App;
 
 // TODO:
+// Make web-app responsive
+// On stopping session, store total session duration in local storage for each day
+// Add 'Stats' section
 // Fix color scheme from Adobe Color
 // Add background gradient animation on start session

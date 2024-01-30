@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useToast } from '../../@/components/ui/use-toast';
 import useSound from 'use-sound';
+import { formatTime } from '../utils/time_formatter';
 
 const useStopWatch = () => {
 	/*
@@ -13,6 +15,8 @@ const useStopWatch = () => {
 	const [isPaused, setIsPaused] = useState<boolean>(false);
 	const [intervalId, setIntervalId] = useState<number | any>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const { toast } = useToast();
 	const [playStartSound] = useSound('sound/start-timer.mp3');
 	const [playStopSound] = useSound('sound/stop-timer.mp3');
 
@@ -43,6 +47,13 @@ const useStopWatch = () => {
 		clearInterval(intervalId);
 		setIntervalId(null);
 		playStopSound();
+		const totalSessionTime =
+			0 == sessionElapsedTime ? elapsedTime : sessionElapsedTime;
+		toast({
+			title: 'Completed session',
+			description:
+				'You were focused for a total of ' + formatTime(totalSessionTime),
+		});
 
 		// Store stats here
 		setElapsedTime(0);
