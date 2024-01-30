@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import useFeatureFlag from '../../hooks/useFeatureFlag';
 
 const NavbarIcon = ({ children }: { children: ReactNode }) => {
 	return (
@@ -10,7 +11,8 @@ const NavbarIcon = ({ children }: { children: ReactNode }) => {
 };
 
 export default function Navbar() {
-	return (
+	const isNavEnabled = useFeatureFlag('routing');
+	return isNavEnabled ? (
 		<div className="flex items-center gap-2">
 			<Link to="/stats">
 				<NavbarIcon>
@@ -23,5 +25,7 @@ export default function Navbar() {
 				</NavbarIcon>
 			</Link>
 		</div>
+	) : (
+		<></>
 	);
 }
