@@ -26,9 +26,3 @@ function App() {
 }
 
 export default App;
-
-// TODO:
-// Make web-app responsive
-// Add 'About' page
-// Fix color scheme from Adobe Color
-// Add background gradient animation on start session
