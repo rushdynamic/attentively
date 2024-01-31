@@ -21,7 +21,7 @@ const useStopWatch = () => {
 	const [playStartSound] = useSound('sound/start-timer.mp3');
 	const [playStopSound] = useSound('sound/stop-timer.mp3');
 
-	const { getLs, upsertLs } = useLocalStorage('stopWatch');
+	const { getLs, upsertLs } = useLocalStorage('stopwatch');
 
 	const updateStopWatch = (startTime: any) => {
 		const currentTime = new Date().getTime(); // + 25 * 60 * 1000;
