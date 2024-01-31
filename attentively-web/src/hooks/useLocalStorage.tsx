@@ -1,4 +1,4 @@
-const APP_NAME = 'Attentively';
+const APP_NAME = 'attentively';
 
 function useLocalStorage(prefix?: string) {
 	const todayKey = () => {
@@ -25,7 +25,15 @@ function useLocalStorage(prefix?: string) {
 		set(key, updatedValue || '');
 	};
 
-	return { getLs: get, setLs: set, upsertLs: upsert };
+	const getAll = (prefix: any) => {
+		return Object.keys(localStorage)
+			.filter((k) => k.startsWith(`${APP_NAME}.${prefix}`))
+			.map((k) => {
+				return { key: k, value: localStorage.getItem(k) };
+			});
+	};
+
+	return { getLs: get, setLs: set, upsertLs: upsert, getAllLs: getAll };
 }
 
 export default useLocalStorage;

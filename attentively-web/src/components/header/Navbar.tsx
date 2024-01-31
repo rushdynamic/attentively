@@ -11,21 +11,28 @@ const NavbarIcon = ({ children }: { children: ReactNode }) => {
 };
 
 export default function Navbar() {
-	const isNavEnabled = useFeatureFlag('routing');
-	return isNavEnabled ? (
+	const isStatsEnabled = useFeatureFlag('stats');
+	const isAboutEnabled = useFeatureFlag('about');
+	return (
 		<div className="flex items-center gap-2">
-			<Link to="/stats">
-				<NavbarIcon>
-					<img src="/img/icons/stats.svg" alt="Stats" />
-				</NavbarIcon>
-			</Link>
-			<Link to="/about">
-				<NavbarIcon>
-					<img src="/img/icons/about.svg" alt="About" />
-				</NavbarIcon>
-			</Link>
+			{isStatsEnabled ? (
+				<Link to="/stats">
+					<NavbarIcon>
+						<img src="/img/icons/stats.svg" alt="Stats" />
+					</NavbarIcon>
+				</Link>
+			) : (
+				<></>
+			)}
+			{isAboutEnabled ? (
+				<Link to="/about">
+					<NavbarIcon>
+						<img src="/img/icons/about.svg" alt="About" />
+					</NavbarIcon>
+				</Link>
+			) : (
+				<></>
+			)}
 		</div>
-	) : (
-		<></>
 	);
 }
