@@ -85,7 +85,7 @@ export default function Timer() {
 				<Loader />
 			) : (
 				<>
-					<span className="font-timer text-6xl py-4 text-zinc-50 cursor-default select-none">
+					<span className="font-timer text-8xl py-4 text-zinc-50 cursor-default select-none">
 						{isPaused ? formatTime(remainingTime) : formatTime(elapsedTime)}
 					</span>
 					{sessionElapsedTime != 0 ? (
