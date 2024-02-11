@@ -1,7 +1,8 @@
 import useLocalStorage from './useLocalStorage';
 import { formatTime } from '../utils/time_formatter';
+import { useEffect, useState } from 'react';
 
-export default function useStats() {
+function useStats() {
 	const { getAllLs } = useLocalStorage();
 	const stats = getAllLs('stopwatch').map((stat) => {
 		return {
@@ -18,3 +19,28 @@ export default function useStats() {
 
 	return { stats };
 }
+
+function useSyncedStats() {
+	const [syncedStats, setSyncedStats] = useState('');
+	useEffect(() => {
+		async function fetchStats() {
+			const response = await fetch('http://localhost:3000/stats', {
+				method: 'GET',
+				redirect: 'follow',
+				credentials: 'include',
+			});
+			if (response.redirected) {
+				document.location = response.url;
+			} else {
+				const data = await response.text();
+				setSyncedStats(data);
+			}
+		}
+
+		fetchStats();
+	}, []);
+
+	return { syncedStats };
+}
+
+export { useStats, useSyncedStats };

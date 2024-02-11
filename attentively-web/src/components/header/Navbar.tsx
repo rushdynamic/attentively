@@ -25,11 +25,11 @@ export default function Navbar() {
 				<></>
 			)}
 			{isAboutEnabled ? (
-				<Link to="/about">
+				<a href="http://localhost:3000/login">
 					<NavbarIcon>
 						<img src="/img/icons/about.svg" alt="About" />
 					</NavbarIcon>
-				</Link>
+				</a>
 			) : (
 				<></>
 			)}
