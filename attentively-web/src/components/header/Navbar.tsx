@@ -13,6 +13,7 @@ const NavbarIcon = ({ children }: { children: ReactNode }) => {
 export default function Navbar() {
 	const isStatsEnabled = useFeatureFlag('stats');
 	const isAboutEnabled = useFeatureFlag('about');
+	const isAccountEnabled = useFeatureFlag('account');
 	return (
 		<div className="flex items-center gap-2">
 			{isStatsEnabled ? (
@@ -25,11 +26,20 @@ export default function Navbar() {
 				<></>
 			)}
 			{isAboutEnabled ? (
-				<a href="http://localhost:3000/login">
+				<Link to="/about">
 					<NavbarIcon>
 						<img src="/img/icons/about.svg" alt="About" />
 					</NavbarIcon>
-				</a>
+				</Link>
+			) : (
+				<></>
+			)}
+			{isAccountEnabled ? (
+				<Link to="/account">
+					<NavbarIcon>
+						<img src="/img/icons/account.svg" alt="Account" />
+					</NavbarIcon>
+				</Link>
 			) : (
 				<></>
 			)}
