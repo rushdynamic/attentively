@@ -1,6 +1,7 @@
 import useLocalStorage from './useLocalStorage';
 import { formatTime } from '../utils/time_formatter';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function useStats() {
 	const { getAllLs } = useLocalStorage();
@@ -22,6 +23,7 @@ function useStats() {
 
 function useSyncedStats() {
 	const [syncedStats, setSyncedStats] = useState('');
+	const navigate = useNavigate();
 	useEffect(() => {
 		async function fetchStats() {
 			const response = await fetch('http://localhost:3000/stats', {
@@ -30,7 +32,8 @@ function useSyncedStats() {
 				credentials: 'include',
 			});
 			if (response.redirected) {
-				document.location = response.url;
+				// document.location = response.url;
+				navigate('/account');
 			} else {
 				const data = await response.text();
 				setSyncedStats(data);
