@@ -1,3 +1,3 @@
 # Attentively
 
-An app for efficiently tracking your productive time and focus.
+An app that helps you stay focused and be more productive.

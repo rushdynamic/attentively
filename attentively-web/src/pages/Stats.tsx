@@ -8,7 +8,7 @@ import {
 	TableRow,
 } from '../../@/components/ui/table';
 import { motion } from 'framer-motion';
-import useStats from '../hooks/useStats';
+import { useStats, useSyncedStats } from '../hooks/useStats';
 
 type Stat = {
 	date: string | undefined;
@@ -24,6 +24,7 @@ const TableRowItem = ({ date, duration }: Stat) => {
 };
 
 export default function Stats() {
+	const { syncedStats } = useSyncedStats();
 	const { stats } = useStats();
 	return (
 		<motion.div
@@ -32,6 +33,7 @@ export default function Stats() {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.8 }}
 		>
+			<span>{syncedStats}</span>
 			<div className="w-[50%] h-fit bg-black rounded-lg p-4">
 				<Table>
 					<TableCaption>A list of your recent sessions.</TableCaption>

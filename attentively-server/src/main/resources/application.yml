@@ -1,0 +1,14 @@
+# src/main/resources/application.yml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${ATTENTIVELY_OAUTH2_GITHUB_CLIENT_ID}
+            clientSecret: ${ATTENTIVELY_OAUTH2_GITHUB_CLIENT_SECRET}
+          google:
+            clientId: ${ATTENTIVELY_OAUTH2_GOOGLE_CLIENT_ID}
+            clientSecret: ${ATTENTIVELY_OAUTH2_GOOGLE_CLIENT_SECRET}
+server:
+  port: 3000

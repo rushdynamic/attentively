@@ -5,6 +5,7 @@ import Header from './components/header/Header';
 import Home from './pages/Home';
 import Stats from './pages/Stats';
 import About from './pages/About';
+import Account from './pages/Account';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/stats" element={<Stats />} />
 						<Route path="/about" element={<About />} />
+						<Route path="/account" element={<Account />} />
 					</Routes>
 				</BrowserRouter>
 			</div>
@@ -26,9 +28,3 @@ function App() {
 }
 
 export default App;
-
-// TODO:
-// Make web-app responsive
-// Add 'About' page
-// Fix color scheme from Adobe Color
-// Add background gradient animation on start session
