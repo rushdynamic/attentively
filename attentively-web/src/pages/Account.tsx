@@ -1,4 +1,8 @@
-import { useLoginProvider, providerName } from '../hooks/useAccount';
+import {
+	useUserAccount,
+	useLoginProvider,
+	providerName,
+} from '../hooks/useUserAccount';
 
 const SignInButton = ({
 	label,
@@ -27,10 +31,17 @@ const SignInButton = ({
 
 export default function Account() {
 	//TODO: make API call to fetch acount details here. If redirected, show login buttons
+	const { isLoggedIn, userDetails } = useUserAccount();
 	return (
 		<div>
-			<SignInButton label="Sign in with GitHub" provider="github" />
-			<SignInButton label="Sign in with Google" provider="google" />
+			{isLoggedIn ? (
+				<div>{userDetails && userDetails.name}</div>
+			) : (
+				<div>
+					<SignInButton label="Sign in with GitHub" provider="github" />
+					<SignInButton label="Sign in with Google" provider="google" />
+				</div>
+			)}
 		</div>
 	);
 }
